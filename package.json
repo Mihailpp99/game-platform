@@ -1,0 +1,25 @@
+{
+  "name": "game-platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mihailpp99/game-platform.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mihailpp99/game-platform/issues"
+  },
+  "homepage": "https://github.com/Mihailpp99/game-platform#readme",
+  "dependencies": {
+    "lit-html": "^2.2.1",
+    "lite-server": "^2.6.1",
+    "page": "^1.11.6"
+  }
+}
