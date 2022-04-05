@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+/* font-family: 'Urbanist', sans-serif; */
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    background-color: hsl(208, 45%, 37%);
+    justify-content: flex-end;
+    align-items: center;
+    height: 6vh;
+    font-size: 2rem;
+}
+
+nav .navigation{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+}
+
+nav .navigation li{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+}
+
+nav .navigation li:hover{
+    background-color: hsl(208, 43%, 30%);
+}
+
+.active{
+    background-color: hsl(208, 43%, 30%);
+}
+
+nav .navigation a{
+    text-decoration: none;
+    color: black;
+}
+
+nav .navigation button{
+    text-decoration: none;
+    color: black;
+    border: none;
+    padding: 0px;
+}
+
+
+/*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
+
+
+#wizardMain{
+    height: 94vh;
+    width: 100%;
+    background-color: aqua;
+}
+
+
+.wizard {
+    position: absolute;
+    background-image: url("/src/assets/images/wizard.png");
+    background-size: cover;
+}
+
+
