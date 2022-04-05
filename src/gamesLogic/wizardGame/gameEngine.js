@@ -5,21 +5,37 @@ export const startGame = (state, game) => {
 };
 
 function gameLoop(state, game, timestamp) {
-  console.log(window.isPageChanged);
   if (window.isPageChanged) {
     console.log("end");
     return;
   }
+  moveWizard(state, game);
   const { wizard } = state;
   const { wizardElement } = game;
 
-  console.log(timestamp);
+  wizardElement.style.left = wizard.posX + "px";
+  wizardElement.style.top = wizard.posY + "px";
 
   if (state.gameOver) {
     alert(`Game Over `);
   } else {
     state.score += state.scoreRate;
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
+  }
+}
+
+function moveWizard(state, game) {
+  if (state.keys.KeyA) {
+    state.wizard.posX -= 8;
+  }
+  if (state.keys.KeyS) {
+    state.wizard.posY += 8;
+  }
+  if (state.keys.KeyD) {
+    state.wizard.posX += 8;
+  }
+  if (state.keys.KeyW) {
+    state.wizard.posY -= 8;
   }
 }
 
@@ -35,7 +51,7 @@ function gameLoop2(state, game, timestamp) {
 
   game.scoreScreen.textContent = `${state.score} pts.`;
 
-  modifyWizardPosition(state, game);
+  modifyWizardPosition2(state, game);
 
   if (state.keys.Space) {
     game.wizardElement.style.backgroundImage =
@@ -105,7 +121,7 @@ function gameLoop2(state, game, timestamp) {
   }
 }
 
-function modifyWizardPosition(state, game) {
+function modifyWizardPosition2(state, game) {
   const { wizard } = state;
 
   if (state.keys.KeyA) {

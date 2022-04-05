@@ -10,6 +10,8 @@ export const gameFunctions = () => {
 
   document.addEventListener("keydown", (e) => {
     if (availableKeys.includes(e.code)) {
+      console.log(e);
+      console.log(e.code);
       state.keys[e.code] = true;
     }
   });
