@@ -79,4 +79,8 @@ nav .navigation button{
     background-size: cover;
 }
 
-
+.bug {
+    position: absolute;
+    background-image: url("/src/assets/images/bug.png");
+    background-size: cover;
+}

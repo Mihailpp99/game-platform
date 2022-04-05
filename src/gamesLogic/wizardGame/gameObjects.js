@@ -19,6 +19,20 @@ export const initGameObject = () => {
 
       return wizardElement;
     },
+    createBug(initialState) {
+      let bugElement = document.createElement("div");
+      bugElement.classList.add("bug");
+      bugElement.style.width = initialState.width + "px";
+      bugElement.style.height = initialState.height + "px";
+
+      bugElement.style.left = gameScreen.offsetWidth - 50 + "px";
+      bugElement.style.top =
+        Math.floor(
+          Math.random() * (gameScreen.offsetHeight - initialState.height)
+        ) + "px";
+
+      gameScreen.appendChild(bugElement);
+    },
   };
 };
 
