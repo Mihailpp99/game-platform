@@ -13,9 +13,14 @@ function gameLoop(state, game, timestamp) {
   const { wizard } = state;
   const { wizardElement } = game;
 
+  // Create fireball
+
+  if (state.keys.Space) {
+    game.createFireball(wizard, state.fireball);
+  }
+
   // Spawn bugs
   if (timestamp > state.bugStats.nextSpawnTimestamp) {
-    console.log("spawn");
     game.createBug(state.bugStats);
     state.bugStats.nextSpawnTimestamp =
       timestamp + state.bugStats.maxSpawnInterval;
@@ -36,7 +41,19 @@ function gameLoop(state, game, timestamp) {
       bug.style.left = posX - state.bugStats.speed + "px";
     } else {
       bug.remove();
-      console.log(bugElements);
+    }
+  });
+
+  // move fireball
+  const fireballElements = document.querySelectorAll(".fireball");
+  fireballElements.forEach((fireball) => {
+    let posX = parseInt(fireball.style.left);
+    console.log(posX);
+    console.log(game.gameScreen.offsetWidth);
+    if (posX < game.gameScreen.offsetWidth) {
+      fireball.style.left = posX + state.fireball.speed + "px";
+    } else {
+      fireball.remove();
     }
   });
 
@@ -70,9 +87,22 @@ function moveWizard(state, game) {
     );
   }
   if (keys.KeyW) {
-    console.log(game.gameScreen.style);
     wizard.posY = Math.max(wizard.posY - wizard.speed, 0);
   }
+}
+
+function detectCollision(objectA, objectB) {
+  let first = objectA.getBoundingClientRect();
+  let second = objectB.getBoundingClientRect();
+
+  let hasCollision = !(
+    first.top > second.bottom ||
+    first.bottom < second.top ||
+    first.right < second.left ||
+    first.left > second.right
+  );
+
+  return hasCollision;
 }
 
 function start(state, game) {
@@ -155,18 +185,4 @@ function gameLoop2(state, game, timestamp) {
     state.score += state.scoreRate;
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
   }
-}
-
-function detectCollision(objectA, objectB) {
-  let first = objectA.getBoundingClientRect();
-  let second = objectB.getBoundingClientRect();
-
-  let hasCollision = !(
-    first.top > second.bottom ||
-    first.bottom < second.top ||
-    first.right < second.left ||
-    first.left > second.right
-  );
-
-  return hasCollision;
 }

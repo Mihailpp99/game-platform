@@ -84,3 +84,9 @@ nav .navigation button{
     background-image: url("/src/assets/images/bug.png");
     background-size: cover;
 }
+
+.fireball {
+    position: absolute;
+    background-image: url("/src/assets/images/fire-ball.png");
+    background-size: cover;
+}
