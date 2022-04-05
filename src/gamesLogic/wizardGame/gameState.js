@@ -13,7 +13,7 @@ export const initState = () => {
       height: 100,
       posX: startX,
       posY: startY,
-      speed: 10,
+      speed: 8,
     },
     bugStats: {
       width: 50,

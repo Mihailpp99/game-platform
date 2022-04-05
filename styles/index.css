@@ -66,6 +66,7 @@ nav .navigation button{
 
 
 #wizardMain{
+    position: relative;
     height: 94vh;
     width: 100%;
     background-color: aqua;
