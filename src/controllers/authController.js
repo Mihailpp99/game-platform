@@ -1,8 +1,34 @@
+export const logOutController = (ctx) => {
+  console.log("in");
+  Parse.User.logOut().then(() => {
+    console.log("out");
+    ctx.page.redirect("/");
+  });
+};
+
+import { loginTemplate } from "../views/loginTemplate.js";
+
+export const loginController = (ctx) => {
+  ctx.renderMainContent(loginTemplate(ctx));
+  //logIn(ctx);
+};
+
+function logIn(ctx) {
+  // Create a new instance of the user class
+  let user = Parse.User.logIn("pesho", "pesho")
+    .then(function (user) {
+      ctx.page.redirect("/games");
+    })
+    .catch(function (error) {
+      console.log("Error: " + error.code + " " + error.message);
+    });
+}
+
 import { registerTemplate } from "../views/registerTemplate.js";
 
 export const registerController = (ctx) => {
   ctx.renderMainContent(registerTemplate());
-  signUp();
+  //signUp();
 };
 
 function signUp() {

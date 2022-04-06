@@ -8,7 +8,7 @@ const navElement = document.getElementById("navigation");
 
 export const navigationMiddleware = (ctx, next) => {
   let activeElement = ctx.page.current;
-  render(navigationTemplate(activeElement), navElement);
+  render(navigationTemplate(ctx.user, activeElement), navElement);
   next();
 };
 
