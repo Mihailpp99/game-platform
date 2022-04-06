@@ -5,9 +5,9 @@ export const navigationTemplate = (activeLink) => html`<ul class="navigation">
   <li class="${activeLink === "/games" ? "active" : "no"}">
     <a href="/games">Games</a>
   </li>
-  <li><a href="/">Login</a></li>
-  <li><a href="/">Register</a></li>
-  <li><a href="/">Logout</a></li>
+  <li><a href="/login">Login</a></li>
+  <li><a href="/register">Register</a></li>
+  <li><a href="/logout">Logout</a></li>
 </ul>`;
 
 export const navigationGameplay = (ctx) => html`<ul class="navigation">
