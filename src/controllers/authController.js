@@ -1,3 +1,5 @@
+import { loginTemplate } from "../views/loginTemplate.js";
+
 export const logOutController = (ctx) => {
   console.log("in");
   Parse.User.logOut().then(() => {
@@ -6,17 +8,22 @@ export const logOutController = (ctx) => {
   });
 };
 
-import { loginTemplate } from "../views/loginTemplate.js";
-
 export const loginController = (ctx) => {
-  ctx.renderMainContent(loginTemplate(ctx));
+  ctx.renderMainContent(loginTemplate(ctx, logIn));
   //logIn(ctx);
 };
 
-function logIn(ctx) {
+function logIn(e, ctx) {
   // Create a new instance of the user class
-  let user = Parse.User.logIn("pesho", "pesho")
-    .then(function (user) {
+  console.log(e);
+
+  e.preventDefault();
+  let { username, password } = Object.fromEntries(
+    new FormData(e.currentTarget)
+  );
+
+  Parse.User.logIn(username, password)
+    .then((user) => {
       ctx.page.redirect("/games");
     })
     .catch(function (error) {

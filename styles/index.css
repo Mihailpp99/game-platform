@@ -64,7 +64,9 @@ nav .navigation button{
 }
 
 .centerTitle{
+    font-size: 2rem;
     text-align: center;
+    margin-top: 10px;
 }
 
 
@@ -78,19 +80,19 @@ nav .navigation button{
     position: absolute;
     margin-top: 4%;
     background-color: aliceblue;
-    width: 35%;
-    height: 70%;
+    width: 25%;
+    height: 55%;
     left:50%;
     transform: translateX(-50%);
 }
 
 #formWrapper{
     width: 80%;
-    margin-left: auto;
+    margin-left: 10%;
+    
 }
 
 .formElementWrapper{
-    background-color: aqua;
     
     display: flex;
     flex-direction: column;
@@ -98,7 +100,15 @@ nav .navigation button{
 }
 
 .label{
-    color: red;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.baiscInput{
+    font-size: 1.3rem;
+    
 }
 
 /*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
