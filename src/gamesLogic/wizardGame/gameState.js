@@ -15,6 +15,7 @@ export const initState = (bugs) => {
       posX: startX,
       posY: startY,
       speed: 8,
+      health: 3,
     },
     bugs,
     bugStats: {

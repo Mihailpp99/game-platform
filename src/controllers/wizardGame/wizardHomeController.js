@@ -6,13 +6,9 @@ export const wizardHomeController = async (ctx) => {
 };
 
 async function createOrGetUserForWizard() {
-  const user = Parse.User.current();
-
-  const query = new Parse.Query("WizardUsers");
-  query.equalTo("user", user);
-
-  const wizardUsers = await query.find();
+  let wizardUsers = await getUserForWizardGame();
   if (wizardUsers.length == 0) {
+    const user = Parse.User.current();
     const person = new Parse.Object("WizardUsers");
     person.set("user", user);
     person.set("power", 1);
@@ -27,6 +23,15 @@ async function createOrGetUserForWizard() {
     return wizardUsers[0];
   }
 }
+
+export const getUserForWizardGame = async () => {
+  const user = Parse.User.current();
+  const query = new Parse.Query("WizardUsers");
+  query.equalTo("user", user);
+
+  let wizardUsers = await query.find();
+  return wizardUsers;
+};
 
 async function saveNewPerson() {
   const person = new Parse.Object("Person");

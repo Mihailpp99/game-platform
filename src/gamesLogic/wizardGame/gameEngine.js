@@ -1,4 +1,8 @@
 export const startGame = (state, game) => {
+  const heroHealthSpanElement = (document.getElementById(
+    "heroHealth"
+  ).textContent = state.wizard.health);
+
   game.createWizard(state.wizard);
 
   window.requestAnimationFrame(gameLoop.bind(null, state, game));
@@ -9,6 +13,7 @@ function gameLoop(state, game, timestamp) {
   const fireballElements = document.querySelectorAll(".fireball");
   const killedBugsSpanElement = document.getElementById("killedBugs");
   const goldTakenSpanElement = document.getElementById("goldTaken");
+  const heroHealthSpanElement = document.getElementById("heroHealth");
   if (window.isPageChanged) {
     console.log("end");
     return;
@@ -37,7 +42,12 @@ function gameLoop(state, game, timestamp) {
     let posX = parseInt(bug.style.left);
 
     if (detectCollision(wizardElement, bug)) {
-      state.gameOver = true;
+      bug.remove();
+      state.wizard.health--;
+      heroHealthSpanElement.textContent = state.wizard.health;
+      if (state.wizard.health <= 0) {
+        state.gameOver = true;
+      }
     }
     fireballElements.forEach((fireball) => {
       if (detectCollision(bug, fireball)) {
