@@ -1,18 +1,19 @@
 import { wizardHomeTemplate } from "../../views/wizardGame/wizardHomeTemplate.js";
 
-export const wizardHomeController = (ctx) => {
-  ctx.renderMainContent(wizardHomeTemplate());
-  createUserForWizard();
+export const wizardHomeController = async (ctx) => {
+  let userData = await createOrGetUserForWizard();
+  ctx.renderMainContent(wizardHomeTemplate(userData));
 };
 
-async function createUserForWizard() {
+async function createOrGetUserForWizard() {
   const user = Parse.User.current();
-  const wizardUser = new Parse.Object("wizardUsers");
-  const query = new Parse.Query(wizardUser);
+
+  const query = new Parse.Query("WizardUsers");
   query.equalTo("user", user);
-  const userPosts = await query.find();
-  if (userPosts.length == 0) {
-    const person = new Parse.Object("wizardUsers");
+
+  const wizardUsers = await query.find();
+  if (wizardUsers.length == 0) {
+    const person = new Parse.Object("WizardUsers");
     person.set("user", user);
     person.set("power", 1);
     person.set("maxLevel", 1);
@@ -20,8 +21,9 @@ async function createUserForWizard() {
     person.set("heroSpeed", 6);
     person.set("fireballSpeed", 6);
     await person.save();
+    return person;
   } else {
-    console.log("already exist");
+    return wizardUsers[0];
   }
 }
 

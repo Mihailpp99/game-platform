@@ -15,8 +15,9 @@ function gameLoop(state, game, timestamp) {
 
   // Create fireball
 
-  if (state.keys.Space) {
+  if (state.keys.Space && state.fireball.nextSpawnTimestamp < timestamp) {
     game.createFireball(wizard, state.fireball);
+    state.fireball.nextSpawnTimestamp += 3000;
   }
 
   // Spawn bugs
@@ -29,6 +30,7 @@ function gameLoop(state, game, timestamp) {
   //move Bugs
 
   const bugElements = document.querySelectorAll(".bug");
+  const fireballElements = document.querySelectorAll(".fireball");
 
   bugElements.forEach((bug) => {
     let posX = parseInt(bug.style.left);
@@ -36,6 +38,12 @@ function gameLoop(state, game, timestamp) {
     if (detectCollision(wizardElement, bug)) {
       state.gameOver = true;
     }
+    fireballElements.forEach((fireball) => {
+      if (detectCollision(bug, fireball)) {
+        fireball.remove();
+        bug.remove();
+      }
+    });
 
     if (posX > 0) {
       bug.style.left = posX - state.bugStats.speed + "px";
@@ -45,7 +53,7 @@ function gameLoop(state, game, timestamp) {
   });
 
   // move fireball
-  const fireballElements = document.querySelectorAll(".fireball");
+
   fireballElements.forEach((fireball) => {
     let posX = parseInt(fireball.style.left);
     console.log(posX);

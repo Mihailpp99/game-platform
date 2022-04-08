@@ -52,6 +52,7 @@
 // post.set("body", "This is some great content.");
 // post.set("user", user);
 // await post.save();
+
 // // Find all posts by the current user
 // const query = new Parse.Query(Post);
 // query.equalTo("user", user);
