@@ -1,4 +1,5 @@
 import { loginTemplate } from "../views/loginTemplate.js";
+import { registerTemplate } from "../views/registerTemplate.js";
 
 export const logOutController = (ctx) => {
   console.log("in");
@@ -30,8 +31,6 @@ function logIn(e, ctx) {
       console.log("Error: " + error.code + " " + error.message);
     });
 }
-
-import { registerTemplate } from "../views/registerTemplate.js";
 
 export const registerController = (ctx) => {
   ctx.renderMainContent(registerTemplate());
