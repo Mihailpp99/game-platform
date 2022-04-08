@@ -20,6 +20,7 @@ async function createOrGetUserForWizard() {
     person.set("heroHealth", 1);
     person.set("heroSpeed", 6);
     person.set("fireballSpeed", 6);
+    person.set("gold", 0);
     await person.save();
     return person;
   } else {

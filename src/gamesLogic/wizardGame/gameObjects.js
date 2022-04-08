@@ -24,6 +24,7 @@ export const initGameObject = () => {
       bugElement.classList.add("bug");
       bugElement.style.width = initialState.width + "px";
       bugElement.style.height = initialState.height + "px";
+      bugElement.setAttribute("data-gold", initialState.gold);
 
       bugElement.style.left = gameScreen.offsetWidth - 50 + "px";
       bugElement.style.top =

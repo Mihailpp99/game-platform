@@ -1,13 +1,14 @@
-export const initState = () => {
-  let startX = Math.floor(Math.random() * 1000);
-  let startY = Math.floor(Math.random() * 500);
+export const initState = (bugs) => {
+  let startX = Math.floor(Math.random() * 500);
+  let startY = Math.floor(Math.random() * 800);
 
   const state = {
     player: "Pesho",
     gameOver: false,
-    score: 0,
+    level: 1,
     scoreRate: 1,
-    killScore: 1000,
+    killedBugs: 0,
+    gold: 0,
     wizard: {
       width: 82,
       height: 100,
@@ -15,11 +16,12 @@ export const initState = () => {
       posY: startY,
       speed: 8,
     },
+    bugs,
     bugStats: {
       width: 50,
       height: 50,
       nextSpawnTimestamp: 0,
-      maxSpawnInterval: 800,
+      maxSpawnInterval: 1800,
       speed: 8,
     },
     fireball: {

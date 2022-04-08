@@ -5,6 +5,10 @@ export const startGame = (state, game) => {
 };
 
 function gameLoop(state, game, timestamp) {
+  const bugElements = document.querySelectorAll(".bug");
+  const fireballElements = document.querySelectorAll(".fireball");
+  const killedBugsSpanElement = document.getElementById("killedBugs");
+  const goldTakenSpanElement = document.getElementById("goldTaken");
   if (window.isPageChanged) {
     console.log("end");
     return;
@@ -17,20 +21,17 @@ function gameLoop(state, game, timestamp) {
 
   if (state.keys.Space && state.fireball.nextSpawnTimestamp < timestamp) {
     game.createFireball(wizard, state.fireball);
-    state.fireball.nextSpawnTimestamp += 3000;
+    state.fireball.nextSpawnTimestamp = timestamp + 2000;
   }
 
   // Spawn bugs
-  if (timestamp > state.bugStats.nextSpawnTimestamp) {
-    game.createBug(state.bugStats);
-    state.bugStats.nextSpawnTimestamp =
-      timestamp + state.bugStats.maxSpawnInterval;
+  if (timestamp > state.bugs["bug1"].nextSpawnTimestamp) {
+    game.createBug(state.bugs["bug1"]);
+    state.bugs["bug1"].nextSpawnTimestamp =
+      timestamp + state.bugs["bug1"].maxSpawnInterval;
   }
 
   //move Bugs
-
-  const bugElements = document.querySelectorAll(".bug");
-  const fireballElements = document.querySelectorAll(".fireball");
 
   bugElements.forEach((bug) => {
     let posX = parseInt(bug.style.left);
@@ -42,11 +43,16 @@ function gameLoop(state, game, timestamp) {
       if (detectCollision(bug, fireball)) {
         fireball.remove();
         bug.remove();
+        killedBugsSpanElement.textContent =
+          Number(killedBugsSpanElement.textContent) + 1;
+        goldTakenSpanElement.textContent =
+          Number(goldTakenSpanElement.textContent) +
+          Number(bug.getAttribute("data-gold"));
       }
     });
 
     if (posX > 0) {
-      bug.style.left = posX - state.bugStats.speed + "px";
+      bug.style.left = posX - state.bugs["bug1"].speed + "px";
     } else {
       bug.remove();
     }
@@ -56,8 +62,6 @@ function gameLoop(state, game, timestamp) {
 
   fireballElements.forEach((fireball) => {
     let posX = parseInt(fireball.style.left);
-    console.log(posX);
-    console.log(game.gameScreen.offsetWidth);
     if (posX < game.gameScreen.offsetWidth) {
       fireball.style.left = posX + state.fireball.speed + "px";
     } else {
