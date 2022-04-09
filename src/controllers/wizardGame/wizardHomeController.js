@@ -1,13 +1,15 @@
 import { wizardHomeTemplate } from "../../views/wizardGame/wizardHomeTemplate.js";
+import { getUserForWizardGame } from "../../services/wizardGame/wizardGame.js";
 
 export const wizardHomeController = async (ctx) => {
-  let userData = await createOrGetUserForWizard();
+  let userData = await createOrGetUserForWizard(ctx);
   ctx.renderMainContent(wizardHomeTemplate(userData));
 };
 
-async function createOrGetUserForWizard() {
+async function createOrGetUserForWizard(ctx) {
   let wizardUsers = await getUserForWizardGame();
-  if (wizardUsers.length == 0) {
+  if (!wizardUsers) {
+    console.log("create new");
     const user = Parse.User.current();
     const person = new Parse.Object("WizardUsers");
     person.set("user", user);
@@ -18,20 +20,12 @@ async function createOrGetUserForWizard() {
     person.set("fireballSpeed", 6);
     person.set("gold", 0);
     await person.save();
+    ctx.page.redirect("/games/wizard/home");
     return person;
   } else {
-    return wizardUsers[0];
+    return wizardUsers;
   }
 }
-
-export const getUserForWizardGame = async () => {
-  const user = Parse.User.current();
-  const query = new Parse.Query("WizardUsers");
-  query.equalTo("user", user);
-
-  let wizardUsers = await query.find();
-  return wizardUsers;
-};
 
 async function saveNewPerson() {
   const person = new Parse.Object("Person");

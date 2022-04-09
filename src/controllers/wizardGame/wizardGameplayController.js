@@ -1,7 +1,9 @@
 import { gameFunctions } from "../../gamesLogic/wizardGame/main.js";
 import { wizardGameplayTemplate } from "../../views/wizardGame/wizardGameplayTemplate.js";
+import { getUserForWizardGame } from "../../services/wizardGame/wizardGame.js";
 
-export const wizardGameplayController = (ctx) => {
+export const wizardGameplayController = async (ctx) => {
   ctx.renderMainContent(wizardGameplayTemplate());
-  gameFunctions();
+  let userData = await getUserForWizardGame();
+  gameFunctions(userData);
 };

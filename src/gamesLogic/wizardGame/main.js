@@ -3,8 +3,8 @@ import { initGameObject } from "./gameObjects.js";
 import { startGame } from "./gameEngine.js";
 import { levels } from "./levels.js";
 
-export const gameFunctions = () => {
-  let state = initState(levels[1].bugs);
+export const gameFunctions = (userData) => {
+  let state = initState(levels[1], userData);
   let game = initGameObject(state);
 
   const availableKeys = ["KeyA", "KeyS", "KeyD", "KeyW", "Space"];
