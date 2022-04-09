@@ -5,5 +5,5 @@ import { getUserForWizardGame } from "../../services/wizardGame/wizardGame.js";
 export const wizardGameplayController = async (ctx) => {
   ctx.renderMainContent(wizardGameplayTemplate());
   let userData = await getUserForWizardGame();
-  gameFunctions(userData);
+  gameFunctions(userData, ctx);
 };

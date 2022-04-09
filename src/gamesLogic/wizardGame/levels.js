@@ -14,7 +14,7 @@ export const levels = {
     },
     mission: {
       killedBugs: 5,
-      time: 1 * 10 * 1000,
+      time: 1 * 30 * 1000,
     },
   },
 };

@@ -8,8 +8,9 @@ export const initState = (level, userData) => {
     player: "Pesho",
     gameOver: false,
     level: 1,
-
+    userData,
     time: mission.time,
+    isTimeOver: false,
     mustKillBugs: mission.killedBugs,
     killedBugs: 0,
     gold: 0,

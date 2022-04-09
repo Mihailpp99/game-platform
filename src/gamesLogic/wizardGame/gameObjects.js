@@ -1,8 +1,11 @@
-export const initGameObject = () => {
+export const initGameObject = (ctx) => {
   const gameScreen = document.querySelector("#wizardMain");
 
   return {
     gameScreen,
+    newPage(path) {
+      ctx.page.redirect(path);
+    },
     createWizard(initialState) {
       let wizardElement = document.createElement("div");
       wizardElement.classList.add("wizard");

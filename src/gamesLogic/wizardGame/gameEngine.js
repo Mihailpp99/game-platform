@@ -1,10 +1,17 @@
+import { saveAfterGame } from "../../services/wizardGame/wizardGame.js";
+import { render } from "../../../node_modules/lit-html/lit-html.js";
+import { wizardEndGameView } from "../../components/games/endGameWindows.js";
+
 export const startGame = (state, game) => {
   const heroHealthSpanElement = (document.getElementById(
     "heroHealth"
   ).textContent = state.wizard.health);
   window.reqId = undefined;
   game.createWizard(state.wizard);
-  setTimeout(() => (state.gameOver = true), state.time);
+  setTimeout(() => {
+    state.gameOver = true;
+    state.isTimeOver = true;
+  }, state.time);
 
   window.reqId = window.requestAnimationFrame(gameLoop.bind(null, state, game));
 };
@@ -15,7 +22,7 @@ function gameLoop(state, game, timestamp) {
   const killedBugsSpanElement = document.getElementById("killedBugs");
   const goldTakenSpanElement = document.getElementById("goldTaken");
   const heroHealthSpanElement = document.getElementById("heroHealth");
-  console.log(timestamp);
+  const gameScreen = document.getElementById("wizardMain");
 
   if (window.isPageChanged) {
     console.log("end");
@@ -87,11 +94,39 @@ function gameLoop(state, game, timestamp) {
   wizardElement.style.top = wizard.posY + "px";
 
   if (state.gameOver) {
+    let goldWon = Number(goldTakenSpanElement.textContent);
+    if (
+      !state.isTimeOver ||
+      state.mustKillBugs > Number(killedBugsSpanElement.textContent)
+    ) {
+      goldWon /= 2;
+    }
+    saveAfterGame(
+      goldWon,
+      state.userData.gold,
+      true,
+      state.userData.objectId
+    ).then(() => {
+      render(
+        wizardEndGameView(
+          goldWon,
+          state.mustKillBugs,
+          killedBugsSpanElement.textContent,
+          game.newPage
+        ),
+        gameScreen
+      );
+    });
     alert(`Game Over `);
   } else {
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
   }
 }
+
+// helper functions
+//
+//
+//
 
 function moveWizard(state, game) {
   let { wizard, keys } = state;
