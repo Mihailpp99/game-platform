@@ -18,7 +18,8 @@ async function createOrGetUserForWizard(ctx) {
     person.set("heroHealth", 1);
     person.set("heroSpeed", 6);
     person.set("fireballSpeed", 6);
-    person.set("gold", 0);
+    person.set("fireballSpawnInterval", 4000);
+    person.set("fireballDamage", 1);
     await person.save();
     ctx.page.redirect("/games/wizard/home");
     return person;

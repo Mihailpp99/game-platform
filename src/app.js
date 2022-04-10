@@ -22,7 +22,11 @@ page(mainContentMiddleware);
 page("/", homeController);
 page("/games", gamesCatalogController);
 page("/wizard/home", wizardHomeController);
-page("/wizard/gameplay", navigationGamplayMiddleware, wizardGameplayController);
+page(
+  "/wizard/gameplay/:level",
+  navigationGamplayMiddleware,
+  wizardGameplayController
+);
 page("/register", registerController);
 page("/login", loginController);
 page("/logout", logOutController);

@@ -22,21 +22,22 @@ export const getUserForWizardGame = async () => {
   return userData;
 };
 
-export const saveAfterGame = async (
-  goldWon,
-  goldOld,
-  isLastLevel,
-  wizardUserId
-) => {
+export const saveAfterGame = async (goldWon, goldOld, isLevelUp) => {
   try {
-    const wizardUsers = new Parse.Query("WizardUsers");
-    const player = await wizardUsers.get(wizardUserId);
-    console.log(goldOld);
-    console.log(goldWon);
-    player.set("gold", goldOld + goldWon);
-    player.save();
+    const user = Parse.User.current();
+    const query = new Parse.Query("WizardUsers");
+    query.equalTo("user", user);
+    let wizardUsers = await query.find();
+    let lastLevel = Number(wizardUsers[0].get("maxLevel"));
+    wizardUsers[0].set("gold", goldOld + goldWon);
+    if (isLevelUp) {
+      wizardUsers[0].set("maxLevel", lastLevel + 1);
+    }
+    await wizardUsers[0].save();
+
     return true;
   } catch (err) {
+    console.log(err);
     return false;
   }
 };

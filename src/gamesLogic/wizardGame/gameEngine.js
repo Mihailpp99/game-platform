@@ -41,11 +41,12 @@ function gameLoop(state, game, timestamp) {
   }
 
   // Spawn bugs
-  if (timestamp > state.bugs["bug1"].nextSpawnTimestamp) {
-    game.createBug(state.bugs["bug1"]);
-    state.bugs["bug1"].nextSpawnTimestamp =
-      timestamp + state.bugs["bug1"].maxSpawnInterval;
-  }
+  Object.entries(state.bugs).forEach(([bug, bugData]) => {
+    if (timestamp > bugData.nextSpawnTimestamp) {
+      game.createBug(bugData);
+      bugData.nextSpawnTimestamp = timestamp + bugData.maxSpawnInterval;
+    }
+  });
 
   //move Bugs
 
@@ -95,18 +96,21 @@ function gameLoop(state, game, timestamp) {
 
   if (state.gameOver) {
     let goldWon = Number(goldTakenSpanElement.textContent);
+    let isNewLevel = false;
     if (
       !state.isTimeOver ||
       state.mustKillBugs > Number(killedBugsSpanElement.textContent)
     ) {
       goldWon /= 2;
     }
-    saveAfterGame(
-      goldWon,
-      state.userData.gold,
-      true,
-      state.userData.objectId
-    ).then(() => {
+    if (
+      state.isTimeOver &&
+      state.mustKillBugs <= Number(killedBugsSpanElement.textContent) &&
+      state.level === state.userData.maxLevel
+    ) {
+      isNewLevel = true;
+    }
+    saveAfterGame(goldWon, state.userData.gold, isNewLevel).then(() => {
       render(
         wizardEndGameView(
           goldWon,

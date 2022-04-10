@@ -4,7 +4,7 @@ import { startGame } from "./gameEngine.js";
 import { levels } from "./levels.js";
 
 export const gameFunctions = (userData, ctx) => {
-  let state = initState(levels[1], userData);
+  let state = initState(levels[ctx.params.level], userData, ctx);
   let game = initGameObject(ctx);
 
   const availableKeys = ["KeyA", "KeyS", "KeyD", "KeyW", "Space"];

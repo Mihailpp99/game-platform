@@ -1,4 +1,4 @@
-export const initState = (level, userData) => {
+export const initState = (level, userData, ctx) => {
   let startX = Math.floor(Math.random() * 200);
   let startY = Math.floor(Math.random() * 800);
 
@@ -7,7 +7,7 @@ export const initState = (level, userData) => {
   const state = {
     player: "Pesho",
     gameOver: false,
-    level: 1,
+    level: Number(ctx.params.level),
     userData,
     time: mission.time,
     isTimeOver: false,

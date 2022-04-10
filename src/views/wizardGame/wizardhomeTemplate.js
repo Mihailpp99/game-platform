@@ -10,6 +10,6 @@ export const wizardHomeTemplate = (userData) => html`
     <p>fireballSpeed: ${userData.fireballSpeed}</p>
     <p>fireballSawnInterval: ${userData.fireballSpawnInterval}</p>
     <p>fireballDamage: ${userData.fireballDamage}</p>
-    <a href="/wizard/gameplay">Start game</a>
+    <a href="/wizard/gameplay/2">Start game</a>
   </div>
 `;
