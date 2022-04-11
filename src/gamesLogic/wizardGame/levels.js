@@ -1,16 +1,12 @@
+// attack damage will be const for one type of bugs
+// health of a bug will be calculated:   Match.floor(1 + level * 0.5)
+// speed of a bug will be calculated: Match.floor( 2.5 + level *0.2)
+import { bugTypes } from "./bugs.js";
+
 export const levels = {
   1: {
     bugs: {
-      bug1: {
-        nextSpawnTimestamp: 0,
-        maxSpawnInterval: 1500,
-        speed: 3.5,
-        health: 1,
-        width: 50,
-        height: 50,
-        attackDamage: 1,
-        gold: 3,
-      },
+      bug1: bugTypes.bug1,
     },
     mission: {
       killedBugs: 3,
@@ -19,16 +15,7 @@ export const levels = {
   },
   2: {
     bugs: {
-      bug1: {
-        nextSpawnTimestamp: 0,
-        maxSpawnInterval: 2000,
-        speed: 10,
-        health: 1,
-        width: 50,
-        height: 50,
-        attackDamage: 1,
-        gold: 3,
-      },
+      bug1: bugTypes.bug1,
     },
     mission: {
       killedBugs: 5,

@@ -4,6 +4,28 @@ export const initState = (level, userData, ctx) => {
 
   let { bugs, mission } = level;
 
+  // modify the bugs according to the level
+  Object.entries(bugs).forEach((bug) => {
+    if (bug[1].healthCanBeChanged) {
+      bugs[bug[0]].health = Number(
+        Math.floor(bugs[bug[0]].health + Number(ctx.params.level) * 0.25)
+      );
+    }
+    if (bug[1].speedCanBeChanged) {
+      bugs[bug[0]].speed = Number(
+        bugs[bug[0]].speed + Number(ctx.params.level) * 0.3
+      );
+    }
+    if (bug[1].maxSpawnIntervalCanBeChanged) {
+      bugs[bug[0]].maxSpawnInterval = Number(
+        Math.max(
+          bugs[bug[0]].maxSpawnInterval - Number(ctx.params.level) * 100,
+          500
+        )
+      );
+    }
+  });
+
   const state = {
     player: "Pesho",
     gameOver: false,
