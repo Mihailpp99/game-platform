@@ -41,3 +41,12 @@ export const saveAfterGame = async (goldWon, goldOld, isLevelUp) => {
     return false;
   }
 };
+
+export const incrementWizardUsers = async (data, isAddition) => {
+  const query = new Parse.Query("WizardUsers");
+  query.equalTo("user", user);
+  let wizardUsers = await query.find();
+
+  wizardUsers[0].increment(data.name, data.value);
+  await wizardUsers[0].save();
+};
