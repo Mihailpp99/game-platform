@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 /* font-family: 'Urbanist', sans-serif; */
 *{
     margin: 0;
@@ -12,6 +13,15 @@ body{
     font-size: 16px;
     font-family: 'Lato', sans-serif;
 }
+
+.logoImg{
+    background-image: url(../src/assets/images/logo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 104px;
+    height: 44px;
+}
+
 
 nav{
     display: flex;
@@ -70,46 +80,6 @@ nav .navigation button{
 }
 
 
-/*///////////////////////////////////////  LOGIN/Register /////////////////////////////////////////////////////////////////*/
-/*///////////////////////////////////////  LOGIN/Register /////////////////////////////////////////////////////////////////*/
-/*///////////////////////////////////////  LOGIN/Register /////////////////////////////////////////////////////////////////*/
-/*///////////////////////////////////////  LOGIN/Register /////////////////////////////////////////////////////////////////*/
-/*///////////////////////////////////////  LOGIN/Register /////////////////////////////////////////////////////////////////*/
-
-#authContainer{
-    position: absolute;
-    margin-top: 4%;
-    background-color: aliceblue;
-    width: 25%;
-    height: 55%;
-    left:50%;
-    transform: translateX(-50%);
-}
-
-#formWrapper{
-    width: 80%;
-    margin-left: 10%;
-    
-}
-
-.formElementWrapper{
-    
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-}
-
-.label{
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.baiscInput{
-    font-size: 1.3rem;
-    
-}
 
 /*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
 /*///////////////////////////////////////  WIZARD /////////////////////////////////////////////////////////////////*/
@@ -166,4 +136,109 @@ nav .navigation button{
     position: absolute;
     background-image: url("/src/assets/images/fire-ball.png");
     background-size: cover;
+}
+
+
+
+/*///////////////////////////////////////  LOGIN /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  LOGIN /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  LOGIN /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  LOGIN /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  LOGIN /////////////////////////////////////////////////////////////////*/
+
+
+.containerAuth{
+    position: relative;
+    background-color: white;
+    width: 100%;
+    min-height: 94vh;
+}
+
+
+.ilustration-bg{
+    position: absolute;
+    background-image: url(../src/assets/images/login/loginIlustration.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 94vh;
+    width: 60vw;
+    animation-name: login;
+    animation-duration: 2s;
+}
+
+#authContainer{
+    position: absolute;
+    margin-top: 4%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    width: 25%;
+    height: 75%;
+    left:75%;
+    transform: translateX(-50%);
+}
+
+#navigationControlsLogin{
+    margin-top: 6%;
+    text-align: center;
+    width: 215px;
+    height: 26px;
+
+}
+
+.loginText{
+    width: 54px;
+    height: 20px;
+    margin-right: 10px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+
+    text-transform: uppercase;
+    color: #005EC2;
+}
+
+#formWrapper{
+    width: 80%;
+    margin-left: 10%;
+    
+}
+
+.formElementWrapper{
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.label{
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.baiscInput{
+    font-size: 1.3rem;
+    
+}
+
+
+
+
+/*///////////////////////////////////////  Animations /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  Animations /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  Animations /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  Animations /////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////  Animations /////////////////////////////////////////////////////////////////*/
+
+@keyframes login {
+    0%{transform: translateX(-20%);}
+    100%{transform: translateX(0%);}
 }
